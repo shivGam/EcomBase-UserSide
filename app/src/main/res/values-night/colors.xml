@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_primary">#121212</color>
+    <color name="background_secondary">#2A2A2A</color>
+
+    <color name="accent_primary">#1E90FF</color>
+    <color name="accent_secondary">#FF9500</color>
+
+    <color name="text_primary">#EDEDED</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_muted">#787878</color>
+
+    <color name="success">#2ECC71</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#FF3B30</color>
+
+    <color name="divider">#3C3C3C</color>
+</resources>

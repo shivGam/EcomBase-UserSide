@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/background_primary"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".SplashFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/app_name_quick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick"
+            android:textColor="@color/accent_primary"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/app_name_com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Com"
+            android:textColor="@color/accent_secondary"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSubtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your essentials, delivered fast."
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>
