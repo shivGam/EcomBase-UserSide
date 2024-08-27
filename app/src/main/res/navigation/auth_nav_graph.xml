@@ -29,5 +29,11 @@
         android:id="@+id/authOtpFragment"
         android:name="com.example.ecombase_userside.AuthOtpFragment"
         android:label="fragment_auth_otp"
-        tools:layout="@layout/fragment_auth_otp" />
+        tools:layout="@layout/fragment_auth_otp" >
+        <action
+            android:id="@+id/action_authOtpFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
