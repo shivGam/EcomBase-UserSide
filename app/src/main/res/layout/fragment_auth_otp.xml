@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_secondary"
+    android:background="@color/background_primary"
     tools:context=".AuthOtpFragment">
 
     <!-- Toolbar attached at the top -->
@@ -82,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/phoneNumberContainer">
 
-        <!-- Repeating TextInputLayout for OTP fields -->
+        <!-- TextInputLayout for OTP field 1 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -93,7 +93,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp1"
@@ -107,8 +108,7 @@
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Repeat TextInputLayout for the remaining 5 OTP fields -->
-        <!-- TextInputLayout 2 -->
+        <!-- Repeat TextInputLayout for OTP fields 2 to 6 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -119,7 +119,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp2"
@@ -133,7 +134,7 @@
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- TextInputLayout 3 -->
+        <!-- Repeat the above for otp3, otp4, otp5, otp6 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,7 +145,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp3"
@@ -158,7 +160,6 @@
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- TextInputLayout 4 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -169,7 +170,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp4"
@@ -183,7 +185,6 @@
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- TextInputLayout 5 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -194,7 +195,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp5"
@@ -208,7 +210,6 @@
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- TextInputLayout 6 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -219,7 +220,8 @@
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/accent_primary">
+            app:boxStrokeColor="@color/accent_primary"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/otp6"
@@ -232,7 +234,9 @@
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_muted" />
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
+
 
     <!-- Login Button -->
     <Button

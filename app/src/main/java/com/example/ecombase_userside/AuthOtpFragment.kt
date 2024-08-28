@@ -31,11 +31,16 @@ class AuthOtpFragment : Fragment() {
     }
 
     private fun requiredIncrement() {
-        val editText = arrayOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
+        val editTexts = arrayOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
 
-        for (i in editText.indices) {
-            editText[i].addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        for (i in editTexts.indices) {
+            editTexts[i].addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                     // No implementation needed
                 }
 
@@ -45,12 +50,12 @@ class AuthOtpFragment : Fragment() {
 
                 override fun afterTextChanged(s: Editable?) {
                     if (s?.length == 1) {
-                        if (i < editText.size - 1) {
-                            editText[i + 1].requestFocus()
+                        if (i < editTexts.size - 1) {
+                            editTexts[i + 1].requestFocus()
                         }
                     } else if (s?.length == 0) {
                         if (i > 0) {
-                            editText[i - 1].requestFocus()
+                            editTexts[i - 1].requestFocus()
                         }
                     }
                 }
