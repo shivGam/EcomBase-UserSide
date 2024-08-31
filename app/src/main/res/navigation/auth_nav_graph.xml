@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.ecombase_userside.AuthFragment"
+        android:name="com.example.ecombase_userside.auth_fragments.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/authOtpFragment"
-        android:name="com.example.ecombase_userside.AuthOtpFragment"
+        android:name="com.example.ecombase_userside.auth_fragments.AuthOtpFragment"
         android:label="fragment_auth_otp"
         tools:layout="@layout/fragment_auth_otp" >
         <action

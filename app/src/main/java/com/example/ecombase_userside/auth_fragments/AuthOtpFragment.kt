@@ -1,18 +1,27 @@
-package com.example.ecombase_userside
+package com.example.ecombase_userside.auth_fragments
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.ecombase_userside.R
+import com.example.ecombase_userside.Utils
 import com.example.ecombase_userside.databinding.FragmentAuthOtpBinding
+import com.example.ecombase_userside.viewmodels.AuthViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class AuthOtpFragment : Fragment() {
+    private val viewModel : AuthViewModel by viewModels()
     private lateinit var binding : FragmentAuthOtpBinding
-    private lateinit var userName : String
+    private lateinit var userNumber: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +30,54 @@ class AuthOtpFragment : Fragment() {
         getUserNumber()
         actionBackButton()
         requiredIncrement()
+        sendOtp()
+        actionLoginButton()
         return binding.root
+    }
+
+    private fun actionLoginButton() {
+        binding.btnLogin.setOnClickListener {
+            Utils.showDialog(requireContext(),"Verifying")
+            val editTexts = arrayOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4, binding.otp5, binding.otp6)
+            val otpSend = editTexts.joinToString (""){it.text.toString()}
+            if(otpSend.length < editTexts.size) {
+                Utils.showToast(requireContext(), "Enter correct Otp")
+                Utils.hideDialog()
+            }
+            else{
+                editTexts.forEach { it.clearFocus();it.text?.clear() }
+                verifyOtp(otpSend)
+            }
+        }
+    }
+
+    private fun verifyOtp(otpSend: String) {
+        viewModel.signInWithPhoneAuthCredential(otpSend,userNumber)
+        lifecycleScope.launch {
+            viewModel.isSuccessful.collect(){
+                Log.d("Tag: For false","$it")
+                if(it){
+
+                    Utils.hideDialog()
+                    Utils.showToast(requireContext(),"Logged in Successfully")
+                }
+            }
+        }
+    }
+
+    private fun sendOtp() {
+        Utils.showDialog(requireContext(), "Getting OTP...")
+        viewModel.apply {
+            sendOtp(userNumber,requireActivity())
+            lifecycleScope.launch {
+                otpSent.collect(){ otpSent->
+                    if(otpSent){
+                        Utils.hideDialog()
+                        Utils.showToast(requireContext(),"OTP sent")
+                    }
+                }
+            }
+        }
     }
 
     private fun actionBackButton() {
@@ -68,8 +124,8 @@ class AuthOtpFragment : Fragment() {
 
     private fun getUserNumber() {
         val bundle = arguments
-        userName = bundle?.getString("number").toString()
-        binding.tvUserPhoneNumber.text = userName
+        userNumber = bundle?.getString("number").toString()
+        binding.tvUserPhoneNumber.text = userNumber
     }
 
 }
