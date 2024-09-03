@@ -1,5 +1,6 @@
 package com.example.ecombase_userside.auth_fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ecombase_userside.R
 import com.example.ecombase_userside.Utils
+import com.example.ecombase_userside.activity.UserMainActivity
 import com.example.ecombase_userside.databinding.FragmentAuthOtpBinding
 import com.example.ecombase_userside.models.Users
 import com.example.ecombase_userside.viewmodels.AuthViewModel
@@ -61,6 +63,8 @@ class AuthOtpFragment : Fragment() {
                 if(it){
                     Utils.hideDialog()
                     Utils.showToast(requireContext(),"Logged in Successfully")
+                    startActivity(Intent(requireActivity(),UserMainActivity::class.java))
+                    requireActivity().finish()
                 }
             }
         }

@@ -5,6 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">30%</item>
+    </style>
     <style name="Theme.EcomBaseUserSide" parent="Base.Theme.EcomBaseUserSide" />
 </resources>

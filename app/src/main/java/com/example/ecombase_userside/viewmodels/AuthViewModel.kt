@@ -20,6 +20,15 @@ class AuthViewModel: ViewModel(){
 
     private val _isSuccessful = MutableStateFlow<Boolean>(false)
     val isSuccessful = _isSuccessful
+
+    private val _isCurrentUser = MutableStateFlow<Boolean>(false)
+    val isCurrentUser = _isCurrentUser
+
+    init {
+        Utils.getFirebaseInstance().currentUser?.uid.let {
+            isCurrentUser.value = true
+        }
+    }
     fun sendOtp (userNumber : String,activity: Activity) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
