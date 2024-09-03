@@ -2,15 +2,14 @@ package com.example.ecombase_userside.viewmodels
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
-import com.example.ecombase_userside.MainActivity
 import com.example.ecombase_userside.Utils
+import com.example.ecombase_userside.models.Users
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
-import okhttp3.internal.Util
 import java.util.concurrent.TimeUnit
 
 class AuthViewModel: ViewModel(){
@@ -48,11 +47,12 @@ class AuthViewModel: ViewModel(){
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
-    fun signInWithPhoneAuthCredential(otp : String , userNumber: String) {
+    fun signInWithPhoneAuthCredential(otp: String, userNumber: String, user: Users) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(),otp)
         Utils.getFirebaseInstance().signInWithCredential(credential)
             .addOnCompleteListener{ task ->
                 if (task.isSuccessful) {
+                    FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(user.uid!!).setValue(user)
                     isSuccessful.value = true
                 }else{
                     isSuccessful.value = false

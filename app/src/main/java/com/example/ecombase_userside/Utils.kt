@@ -28,4 +28,8 @@ object Utils {
             firebaseAuthInstance = FirebaseAuth.getInstance()
         return firebaseAuthInstance!!
     }
+
+    fun getUserId (): String? {
+        return FirebaseAuth.getInstance().currentUser?.uid
+    }
 }

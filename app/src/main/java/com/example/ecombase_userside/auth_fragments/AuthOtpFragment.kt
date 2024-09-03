@@ -14,8 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.ecombase_userside.R
 import com.example.ecombase_userside.Utils
 import com.example.ecombase_userside.databinding.FragmentAuthOtpBinding
+import com.example.ecombase_userside.models.Users
 import com.example.ecombase_userside.viewmodels.AuthViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AuthOtpFragment : Fragment() {
@@ -52,12 +52,13 @@ class AuthOtpFragment : Fragment() {
     }
 
     private fun verifyOtp(otpSend: String) {
-        viewModel.signInWithPhoneAuthCredential(otpSend,userNumber)
+
+        val user = Users(uid = Utils.getUserId(),userNumber = userNumber, userAddress = null)
+        viewModel.signInWithPhoneAuthCredential(otpSend,userNumber,user)
         lifecycleScope.launch {
             viewModel.isSuccessful.collect(){
                 Log.d("Tag: For false","$it")
                 if(it){
-
                     Utils.hideDialog()
                     Utils.showToast(requireContext(),"Logged in Successfully")
                 }
