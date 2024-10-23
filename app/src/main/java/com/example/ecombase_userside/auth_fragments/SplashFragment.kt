@@ -27,17 +27,18 @@ class SplashFragment : Fragment() {
     ): View {
         binding = FragmentSplashBinding.inflate(layoutInflater)
         Handler(Looper.getMainLooper()).postDelayed({
-            lifecycleScope.launch {
-                authViewModel.isCurrentUser.collect{
-                    if(it){
-                        startActivity(Intent(requireActivity(),UserMainActivity::class.java))
-                        requireActivity().finish()
-                    }
-                    else{
-                        findNavController().navigate(R.id.action_splashFragment_to_authFragment)
-                    }
-                }
-            }
+//            lifecycleScope.launch {
+//                authViewModel.isCurrentUser.collect{
+//                    if(it){
+//                        startActivity(Intent(requireActivity(),UserMainActivity::class.java))
+//                        requireActivity().finish()
+//                    }
+//                    else{
+//
+//                    }
+//                }
+//            }
+            findNavController().navigate(R.id.action_splashFragment_to_authFragment)
         },3000)
         return binding.root
     }

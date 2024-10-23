@@ -21,14 +21,14 @@ class AuthViewModel: ViewModel(){
     private val _isSuccessful = MutableStateFlow<Boolean>(false)
     val isSuccessful = _isSuccessful
 
-    private val _isCurrentUser = MutableStateFlow<Boolean>(false)
-    val isCurrentUser = _isCurrentUser
+//    private val _isCurrentUser = MutableStateFlow<Boolean>(false)
+//    val isCurrentUser = _isCurrentUser
 
-    init {
-        Utils.getFirebaseInstance().currentUser?.uid.let {
-            isCurrentUser.value = true
-        }
-    }
+//    init {
+//        Utils.getFirebaseInstance().currentUser?.uid.let {
+//            isCurrentUser.value = true
+//        }
+//    }
     fun sendOtp (userNumber : String,activity: Activity) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -56,11 +56,12 @@ class AuthViewModel: ViewModel(){
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
-    fun signInWithPhoneAuthCredential(otp: String, userNumber: String, user: Users) {
+    fun signInWithPhoneAuthCredential(otp: String, userNumber: String) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(),otp)
         Utils.getFirebaseInstance().signInWithCredential(credential)
             .addOnCompleteListener{ task ->
                 if (task.isSuccessful) {
+                    val user = Users(uid = Utils.getUserId(),userNumber = userNumber, userAddress = null)
                     FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(user.uid!!).setValue(user)
                     isSuccessful.value = true
                 }else{

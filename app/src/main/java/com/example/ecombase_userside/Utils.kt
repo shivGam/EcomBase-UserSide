@@ -2,6 +2,7 @@ package com.example.ecombase_userside
 
 import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.example.ecombase_userside.databinding.LoadingDialogBinding
@@ -29,7 +30,8 @@ object Utils {
         return firebaseAuthInstance!!
     }
 
-    fun getUserId (): String? {
-        return FirebaseAuth.getInstance().currentUser?.uid
+    fun getUserId (): String {
+        Log.d("UID_TAG","${FirebaseAuth.getInstance()}")
+        return FirebaseAuth.getInstance().currentUser!!.uid
     }
 }

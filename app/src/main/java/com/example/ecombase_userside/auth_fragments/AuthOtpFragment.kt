@@ -54,9 +54,7 @@ class AuthOtpFragment : Fragment() {
     }
 
     private fun verifyOtp(otpSend: String) {
-
-        val user = Users(uid = Utils.getUserId(),userNumber = userNumber, userAddress = null)
-        viewModel.signInWithPhoneAuthCredential(otpSend,userNumber,user)
+        viewModel.signInWithPhoneAuthCredential(otpSend,userNumber)
         lifecycleScope.launch {
             viewModel.isSuccessful.collect(){
                 Log.d("Tag: For false","$it")
